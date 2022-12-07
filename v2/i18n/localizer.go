@@ -155,7 +155,7 @@ func (l *Localizer) LocalizeWithTag(lc *LocalizeConfig) (string, language.Tag, e
 		}
 	}
 
-	tag, template, err := l.getMessageTemplate(messageID, lc.DefaultMessage)
+	tag, template, err := l.GetMessageTemplate(messageID, lc.DefaultMessage)
 	if template == nil {
 		return "", language.Und, err
 	}
@@ -178,7 +178,7 @@ func (l *Localizer) LocalizeWithTag(lc *LocalizeConfig) (string, language.Tag, e
 	return msg, tag, err
 }
 
-func (l *Localizer) getMessageTemplate(id string, defaultMessage *Message) (language.Tag, *MessageTemplate, error) {
+func (l *Localizer) GetMessageTemplate(id string, defaultMessage *Message) (language.Tag, *MessageTemplate, error) {
 	_, i, _ := l.bundle.matcher.Match(l.tags...)
 	tag := l.bundle.tags[i]
 	mt := l.bundle.getMessageTemplate(tag, id)
